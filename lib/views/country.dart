@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 class Country extends StatelessWidget {
-  var name;
-  Country(this.name);
+  var country;
+  Country(this.country);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text(name),
+        title: Text(country['name']),
       ),
+      body: ,
     );
   }
 }
