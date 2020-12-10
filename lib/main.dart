@@ -1,3 +1,4 @@
+import 'package:countries_app/views/all_countries.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -6,13 +7,5 @@ void main() {
   ));
 }
 
-class AllCountries extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold();
-  }
-}
 
 
