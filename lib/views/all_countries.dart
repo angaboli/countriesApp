@@ -1,15 +1,25 @@
 import 'package:countries_app/views/country.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class AllCountries extends StatelessWidget {
 
+
+  //Map data;
+
+  void getCountries() async{
+    var response = await Dio().get('https://restcountries.eu/rest/v2/all');
+    print(response.data);
+  }
+
   @override
   Widget build(BuildContext context) {
+    getCountries();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.cyan,
         title: Text('Learn Countries',
-          style: TextStyle(fontFamily: 'Andila New Basic'),
+          style: TextStyle(fontFamily: 'Andika New Basic'),
         ),
       ),
       body: Container(
@@ -24,7 +34,7 @@ class AllCountries extends StatelessWidget {
 
           GestureDetector(
             onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Country()
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Country("France")
               ));
             },
 
@@ -42,7 +52,7 @@ class AllCountries extends StatelessWidget {
           ),
         GestureDetector(
           onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Country()
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Country("Canada")
             ));
           },
           child: Card(
