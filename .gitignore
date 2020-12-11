@@ -30,6 +30,7 @@
 .pub-cache/
 .pub/
 /build/
+countries_app.zip
 
 # Web related
 lib/generated_plugin_registrant.dart

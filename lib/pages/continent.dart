@@ -1,4 +1,3 @@
-
 import 'package:countries_app/pages/all_countries.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -48,22 +47,11 @@ class _ContinentState extends State<Continent>{
         child: GridView(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
           children: <Widget>[
-            GestureDetector(
-              onTap: (){
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                      //ContinentCard(title: 'Africa');,
-                      builder: (context) => AllCountries(),
-                  )
-                );
-              },
-
-
-
-            ),
+            ContinentCard(title: 'Africa'),
             ContinentCard(title: 'America'),
             ContinentCard(title: 'Asia'),
             ContinentCard(title: 'Europe'),
+            ContinentCard(title: 'Oceania'),
 
          ],
         ),

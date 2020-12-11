@@ -2,6 +2,7 @@ import 'package:countries_app/pages/country.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
+
 class AllCountries extends StatefulWidget {
   @override
   _AllCountriesState createState() => _AllCountriesState();
@@ -58,11 +59,11 @@ class _AllCountriesState extends State<AllCountries> {
                       elevation: 10,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-
                         child: Text(
                           snapshot.data[index]['name'],
                           style: TextStyle(fontSize: 18, fontFamily: 'RobotoMono' ),
                         ),
+
                       ),
                     ),
                   );}
