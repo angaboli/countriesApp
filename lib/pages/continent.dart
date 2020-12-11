@@ -1,4 +1,5 @@
 
+import 'package:countries_app/pages/all_countries.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class Continent extends StatefulWidget{
 }
 
 class _ContinentState extends State<Continent>{
+
 
   Future<List> countries;
 
@@ -27,12 +29,12 @@ class _ContinentState extends State<Continent>{
 
   @override
   Widget build(BuildContext context) {
-
+    //print(countries);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.cyan,
         title: Text('Learn Countries',
-          style: TextStyle(fontFamily: 'Andika New Basic'),
+          style: TextStyle(fontFamily: 'RobotoMono'),
         ),
       ),
       body: Container(
@@ -46,7 +48,19 @@ class _ContinentState extends State<Continent>{
         child: GridView(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
           children: <Widget>[
-            ContinentCard(title: 'Africa'),
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      //ContinentCard(title: 'Africa');,
+                      builder: (context) => AllCountries(),
+                  )
+                );
+              },
+
+
+
+            ),
             ContinentCard(title: 'America'),
             ContinentCard(title: 'Asia'),
             ContinentCard(title: 'Europe'),
