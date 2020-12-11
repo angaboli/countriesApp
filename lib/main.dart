@@ -18,35 +18,43 @@ class Home extends StatefulWidget{
 
 class _HomeState extends State<Home>{
 
+  String _currentPage = "Continent";
   int _currentIndex = 0;
-  final tabs = [
-    Center(child: Text('Contient')),
-    Center(child: Text('All countries')),
+
+  final List<Widget> _children = [
+    Continent(),
+    AllCountries(),
   ];
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Center(child: Text('Learn countries', )),
-          bottom: TabBar(
-            tabs: <Widget>[
-              Tab(
-                text: 'Continent',
-                icon: Icon(Icons.map),
-              ),
-              Tab(
-                text: 'All countries',
-                icon: Icon(Icons.flag),
-              )
-            ],
+    return Scaffold(
+      body: _children[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: onTabTapped,
+        currentIndex: _currentIndex,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: 'Continent',
+            backgroundColor: Colors.amberAccent,
           ),
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: 'All countries',
+            backgroundColor: Colors.lightGreenAccent,
 
+          ),
+        ],
       ),
+
     );
   }
 

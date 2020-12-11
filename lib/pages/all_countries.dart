@@ -61,7 +61,7 @@ class _AllCountriesState extends State<AllCountries> {
                         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                         child: Text(
                           snapshot.data[index]['name'],
-                          style: TextStyle(fontSize: 18, fontFamily: 'RobotoMono' ),
+                          style: TextStyle(fontSize: 18),
                         ),
 
                       ),

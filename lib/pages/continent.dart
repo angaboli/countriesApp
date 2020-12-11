@@ -48,9 +48,10 @@ class _ContinentState extends State<Continent>{
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
           children: <Widget>[
             ContinentCard(title: 'Africa'),
-            ContinentCard(title: 'America'),
             ContinentCard(title: 'Asia'),
             ContinentCard(title: 'Europe'),
+            ContinentCard(title: 'North America'),
+            ContinentCard(title: 'South America'),
             ContinentCard(title: 'Oceania'),
 
          ],
