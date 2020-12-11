@@ -29,7 +29,7 @@ class _AllCountriesState extends State<AllCountries> {
         appBar: AppBar(
           backgroundColor: Colors.cyan,
           title: Text('Learn Countries',
-            style: TextStyle(fontFamily: 'Andika New Basic'),
+            style: TextStyle(fontFamily: 'RobotoMono'),
           ),
         ),
         body: Container(
@@ -61,7 +61,7 @@ class _AllCountriesState extends State<AllCountries> {
 
                         child: Text(
                           snapshot.data[index]['name'],
-                          style: TextStyle(fontSize: 18, fontFamily: 'Andika New Basic' ),
+                          style: TextStyle(fontSize: 18, fontFamily: 'RobotoMono' ),
                         ),
                       ),
                     ),
