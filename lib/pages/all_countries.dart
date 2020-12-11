@@ -1,4 +1,4 @@
-import 'package:countries_app/views/country.dart';
+import 'package:countries_app/pages/country.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -72,27 +72,6 @@ class _AllCountriesState extends State<AllCountries> {
               return null;
             },
           ),
-          /*child: ListView(children: [
-
-
-        GestureDetector(
-          onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Country("Canada")
-            ));
-          },
-          child: Card(
-            elevation: 10,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-              child: Text(
-                'Canada',
-                style: TextStyle(fontSize: 18, fontFamily: 'Andika New Basic' ),
-              ),
-            ),
-          ),
-        ),
-      ]
-      ),*/
         )
     );
   }

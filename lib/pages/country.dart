@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Country extends StatelessWidget {
   var country;
@@ -21,9 +22,9 @@ class Country extends StatelessWidget {
             Card(
               elevation: 10,
               margin: EdgeInsets.symmetric(vertical: 50, horizontal: 0),
-              child: Image(
-                image: NetworkImage(country['flag']),
-              ),
+              child: Center(
+                child: SvgPicture.network(country['flag']),
+              )
             ),
             Card(
               elevation: 10,
@@ -56,7 +57,7 @@ class Country extends StatelessWidget {
                       ]),
                       TableRow(children: [
                         Text('Currency', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(country['currencies'].toString(), style: TextStyle(fontSize: 20))
+                        Text(country['currencies'][0]['name'], style: TextStyle(fontSize: 20))
                       ]),
                     ]
                 ),
