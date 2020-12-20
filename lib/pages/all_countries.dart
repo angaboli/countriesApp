@@ -52,8 +52,7 @@ class _AllCountriesState extends State<AllCountries> {
               onTap: ()
               {
                 Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context)=> Country(countries[index]),
+                    SizeRoute(page : Country(countries[index]),
                     ));
               },
 
@@ -94,4 +93,29 @@ class _AllCountriesState extends State<AllCountries> {
         )
     );
   }
+}
+
+class SizeRoute extends PageRouteBuilder {
+  final Widget page;
+  SizeRoute({this.page})
+      : super(
+    pageBuilder: (
+        BuildContext context,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+        ) =>
+    page,
+    transitionsBuilder: (
+        BuildContext context,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+        Widget child,
+        ) =>
+        Align(
+          child: SizeTransition(
+            sizeFactor: animation,
+            child: child,
+          ),
+        ),
+  );
 }

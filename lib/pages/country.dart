@@ -22,7 +22,7 @@ class Country extends StatelessWidget {
           children: <Widget>[
             Card(
               elevation: 10,
-              margin: EdgeInsets.symmetric(vertical: 50, horizontal: 0),
+              margin: EdgeInsets.symmetric(vertical: 15, horizontal: 0),
               child: Center(
                 child: SvgPicture.network(
                     country['flag'],
@@ -33,38 +33,41 @@ class Country extends StatelessWidget {
             Card(
               elevation: 10,
               child: Center(
-                child: Table(
-                    children: [
-                      TableRow(children: [
-                        Text('Continent', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(country['region'], style: TextStyle(fontSize: 20))
-                      ]),
-                      TableRow(children: [
-                        Text('Name', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(country['name'], style: TextStyle(fontSize: 20)),
-                      ]),
-                      TableRow(children: [
-                        Text('Capital', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(country['capital'], style: TextStyle(fontSize: 20))
-                      ]),
+                child: Padding(
+                  padding: const EdgeInsets.all(50.0),
+                  child: Table(
+                      children: [
 
-                      TableRow(children: [
-                        Text('Population', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(country['population'].toString(), style: TextStyle(fontSize: 20))
-                      ]),
-                      TableRow(children: [
-                        Text('Area', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(country['area'].toString(), style: TextStyle(fontSize: 20))
-                      ]),
-                      TableRow(children: [
-                        Text('TimeZone', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(country['timezones'].toString(), style: TextStyle(fontSize: 20))
-                      ]),
-                      TableRow(children: [
-                        Text('Currency', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(country['currencies'][0]['name'], style: TextStyle(fontSize: 20))
-                      ]),
-                    ]
+                        TableRow(children: [
+                          Text('Name', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text(country['name'], style: TextStyle(fontSize: 20)),
+                        ]),
+                        TableRow(children: [
+                          Text('Capital', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text(country['capital'], style: TextStyle(fontSize: 20))
+                        ]),
+                        TableRow(children: [
+                          Text('Continent', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text(country['region'], style: TextStyle(fontSize: 20))
+                        ]),
+                        TableRow(children: [
+                          Text('Population', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text(country['population'].toString(), style: TextStyle(fontSize: 20))
+                        ]),
+                        TableRow(children: [
+                          Text('Area', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text(country['area'].toString(), style: TextStyle(fontSize: 20))
+                        ]),
+                        TableRow(children: [
+                          Text('TimeZone', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text(country['timezones'].toString(), style: TextStyle(fontSize: 20))
+                        ]),
+                        TableRow(children: [
+                          Text('Currency', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text(country['currencies'][0]['name'], style: TextStyle(fontSize: 20))
+                        ]),
+                      ]
+                  ),
                 ),
               ),
             )
