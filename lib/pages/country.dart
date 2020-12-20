@@ -33,6 +33,10 @@ class Country extends StatelessWidget {
                 child: Table(
                     children: [
                       TableRow(children: [
+                        Text('Continent', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        Text(country['region'], style: TextStyle(fontSize: 20))
+                      ]),
+                      TableRow(children: [
                         Text('Name', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                         Text(country['name'], style: TextStyle(fontSize: 20)),
                       ]),
@@ -40,10 +44,7 @@ class Country extends StatelessWidget {
                         Text('Capital', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                         Text(country['capital'], style: TextStyle(fontSize: 20))
                       ]),
-                      TableRow(children: [
-                        Text('Continent', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(country['region'], style: TextStyle(fontSize: 20))
-                      ]),
+
                       TableRow(children: [
                         Text('Population', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                         Text(country['population'].toString(), style: TextStyle(fontSize: 20))

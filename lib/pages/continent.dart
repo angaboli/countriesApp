@@ -12,8 +12,10 @@ class Continent extends StatefulWidget{
 class _ContinentState extends State<Continent>{
 
 
-  Future<List> countries;
+  AllCountries countries;
 
+
+/*
   Future<List> getCountries() async{
     var response = await Dio().get('https://restcountries.eu/rest/v2/all');
     return response.data;
@@ -24,6 +26,7 @@ class _ContinentState extends State<Continent>{
     countries = getCountries();
     super.initState();
   }
+*/
 
 
   @override
@@ -33,28 +36,27 @@ class _ContinentState extends State<Continent>{
       appBar: AppBar(
         backgroundColor: Colors.cyan,
         title: Text('Learn Countries',
-          style: TextStyle(fontFamily: 'RobotoMono'),
         ),
       ),
       body: Container(
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage('https://images.unsplash.com/photo-1551921038-a9009c20adb3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fGVhcnRofGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
+            image: NetworkImage('https://images.unsplash.com/photo-1608268627603-6e5f75aa7fe3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'),
             fit: BoxFit.cover,
           ),
         ),
         child: GridView(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
           children: <Widget>[
-            ContinentCard(title: 'Africa'),
-            ContinentCard(title: 'Asia'),
-            ContinentCard(title: 'Europe'),
-            ContinentCard(title: 'North America'),
-            ContinentCard(title: 'South America'),
-            ContinentCard(title: 'Oceania'),
+            ContinentCard(title: 'Africa', image: 'africa.png'),
+            ContinentCard(title: 'Asia', image: 'asia.png'),
+            ContinentCard(title: 'Europe', image: 'europe.png'),
+            ContinentCard(title: 'North America', image: 'northAmerica.png'),
+            ContinentCard(title: 'Oceania', image: 'oceania.png'),
+            ContinentCard(title: 'South America', image: 'southAmerica.png'),
 
-         ],
+          ],
         ),
       ),
     );
@@ -63,20 +65,31 @@ class _ContinentState extends State<Continent>{
 
 class ContinentCard extends StatelessWidget {
   final String title;
+  final String image;
+
   const ContinentCard({
     Key key,
-    this.title
+    this.title,
+    this.image
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-        elevation: 10,
-        child: Center(child: Text(title,
-          style: TextStyle(fontSize: 20,
-              fontWeight: FontWeight.bold),
-        )
+      elevation: 10,
+      color: Colors.transparent,
+      child: Container(
+        child: Center(
+            child: Text(title, style: TextStyle(color: Colors.blue, backgroundColor: Colors.white, fontSize: 20,
+                fontWeight: FontWeight.bold),
+            )
         ),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/'+image), fit: BoxFit.fitWidth, alignment: Alignment.topCenter,
+          ),
+        ),
+      ),
     );
   }
 }

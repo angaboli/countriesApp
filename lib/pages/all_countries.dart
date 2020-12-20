@@ -10,27 +10,28 @@ class AllCountries extends StatefulWidget {
 
 class _AllCountriesState extends State<AllCountries> {
 
-  Future<List> countries;
+  List countries;
 
-  Future<List> getCountries() async{
+  getCountries() async{
     var response = await Dio().get('https://restcountries.eu/rest/v2/all');
     return response.data;
   }
 
   @override
   void initState() {
-    countries = getCountries();
+    getCountries().then((data){
+      countries = data;
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    print(countries);
+    //print(countries);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.cyan,
-          title: Text('Learn Countries',
-            style: TextStyle(fontFamily: 'RobotoMono'),
+          title: Text('Learn Countries | All countries',
           ),
         ),
         body: Container(
@@ -41,37 +42,34 @@ class _AllCountriesState extends State<AllCountries> {
                 fit: BoxFit.cover,
               )
           ),
-          child: FutureBuilder<List>(
-            future: countries,
-            builder: (BuildContext context, AsyncSnapshot<List> snapshot){
-              if(snapshot.hasData){
-                return ListView.builder( itemBuilder: (BuildContext context,int index){
-                  return GestureDetector(
-                    onTap: ()
-                    {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context)=> Country(snapshot.data[index]),
-                      ));
-                    },
+          child: ListView.builder( itemBuilder: (BuildContext context,int index){
+            return GestureDetector(
+              onTap: ()
+              {
+                Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context)=> Country(countries[index]),
+                    ));
+              },
 
-                    child: Card(
-                      elevation: 10,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                        child: Text(
-                          snapshot.data[index]['name'],
-                          style: TextStyle(fontSize: 18),
-                        ),
+              child: Card(
+                elevation: 10,
+                /*leading: CircleAvatar(
+                        child: SvgPicture.network(country['flag']),
+                      ),*/
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
 
-                      ),
-                    ),
-                  );}
+                  child: Text(
 
-                );
-              }
-              return null;
-            },
+                    countries[index]['name'],
+                    style: TextStyle(fontSize: 18),
+                  ),
+
+                ),
+              ),
+            );}
+
           ),
         )
     );

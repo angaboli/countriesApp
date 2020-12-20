@@ -47,7 +47,7 @@ class _HomeState extends State<Home>{
             backgroundColor: Colors.amberAccent,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.map),
+            icon: Icon(Icons.flag),
             label: 'All countries',
             backgroundColor: Colors.lightGreenAccent,
 
