@@ -1,6 +1,7 @@
 import 'package:countries_app/pages/country.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 
 class AllCountries extends StatefulWidget {
@@ -10,7 +11,7 @@ class AllCountries extends StatefulWidget {
 
 class _AllCountriesState extends State<AllCountries> {
 
-  List countries;
+  List countries = [];
 
   getCountries() async{
     var response = await Dio().get('https://restcountries.eu/rest/v2/all');
@@ -20,7 +21,9 @@ class _AllCountriesState extends State<AllCountries> {
   @override
   void initState() {
     getCountries().then((data){
-      countries = data;
+      setState(() {
+        countries = data;
+      });
     });
     super.initState();
   }
@@ -42,7 +45,9 @@ class _AllCountriesState extends State<AllCountries> {
                 fit: BoxFit.cover,
               )
           ),
-          child: ListView.builder( itemBuilder: (BuildContext context,int index){
+          child: countries.length > 0 ? ListView.builder(
+              itemCount: countries.length,
+              itemBuilder: (BuildContext context,int index){
             return GestureDetector(
               onTap: ()
               {
@@ -59,18 +64,29 @@ class _AllCountriesState extends State<AllCountries> {
                       ),*/
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                          radius: 10.0,
+                          child: SvgPicture.network(countries[index]['flag']),
+                          backgroundColor: Colors.transparent,
+                        ),
+                      ),
+                      Text(
+                        countries[index]['name'],
+                        style: TextStyle(fontSize: 18),
+                      ),
 
-                  child: Text(
+                    ],
 
-                    countries[index]['name'],
-                    style: TextStyle(fontSize: 18),
                   ),
-
                 ),
               ),
             );}
 
-          ),
+          ):CircularProgressIndicator(),
         )
     );
   }
