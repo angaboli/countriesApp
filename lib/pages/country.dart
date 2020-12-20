@@ -24,7 +24,10 @@ class Country extends StatelessWidget {
               elevation: 10,
               margin: EdgeInsets.symmetric(vertical: 50, horizontal: 0),
               child: Center(
-                child: SvgPicture.network(country['flag']),
+                child: SvgPicture.network(
+                    country['flag'],
+                  // height: 0.0,
+                  width: 340.0,),
               )
             ),
             Card(

@@ -70,7 +70,11 @@ class _AllCountriesState extends State<AllCountries> {
                         padding: const EdgeInsets.all(8.0),
                         child: CircleAvatar(
                           radius: 10.0,
-                          child: SvgPicture.network(countries[index]['flag']),
+                          child: SvgPicture.network(
+                            countries[index]['flag'],
+                            height: 30.0,
+                            width: 40.0,
+                          ),
                           backgroundColor: Colors.transparent,
                         ),
                       ),
