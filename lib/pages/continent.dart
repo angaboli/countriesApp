@@ -50,22 +50,8 @@ class _ContinentState extends State<Continent>{
           ),
         ),
         child: GridView(
-
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          children: (
-              itemCount: countries.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  child: ContinentCard(title: countries[index]['region'],),
-                ),
-
-                ;
-
-              },
-
-
-
-          )/*[
+          children: <Widget>[
             ContinentCard(title: 'Africa', image: 'africa.png'),
             ContinentCard(title: 'Asia', image: 'asia.png'),
             ContinentCard(title: 'Europe', image: 'europe.png'),
@@ -73,7 +59,7 @@ class _ContinentState extends State<Continent>{
             ContinentCard(title: 'Oceania', image: 'oceania.png'),
             ContinentCard(title: 'South America', image: 'southAmerica.png'),
 
-          ]*/async ,
+          ],
         ),
       ),
     );
