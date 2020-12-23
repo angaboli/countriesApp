@@ -12,6 +12,7 @@ class Country extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(country['name']),
+        centerTitle: true,
       ),
       body: Container(
         padding: EdgeInsets.all(10),
@@ -20,24 +21,44 @@ class Country extends StatelessWidget {
             crossAxisCount: 1,
           ),
           children: <Widget>[
-            Card(
-              elevation: 10,
-              margin: EdgeInsets.symmetric(vertical: 15, horizontal: 0),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 0),
+              margin: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomRight,
+                      colors: [
+                        Colors.blueGrey.withOpacity(.2),
+                        Colors.blueGrey.withOpacity(.1),
+                      ]
+                  )
+              ),
               child: Center(
                 child: SvgPicture.network(
                     country['flag'],
                   // height: 0.0,
                   width: 340.0,),
-              )
+              ),
             ),
-            Card(
-              elevation: 10,
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 0),
+              margin: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomRight,
+                      colors: [
+                        Colors.blueGrey.withOpacity(.4),
+                        Colors.blueGrey.withOpacity(.2),
+                      ]
+                  )
+              ),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(50.0),
                   child: Table(
                       children: [
-
                         TableRow(children: [
                           Text('Name', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                           Text(country['name'], style: TextStyle(fontSize: 20)),

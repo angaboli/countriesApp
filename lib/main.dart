@@ -1,5 +1,6 @@
 import 'package:countries_app/pages/all_countries.dart';
 import 'package:countries_app/pages/continent.dart';
+import 'package:countries_app/pages/random_country.dart';
 import 'package:flutter/material.dart';
 
 void main() {

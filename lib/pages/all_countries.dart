@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:countries_app/pages/country.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 
 class AllCountries extends StatefulWidget {
+
   @override
   _AllCountriesState createState() => _AllCountriesState();
 }
@@ -12,6 +15,9 @@ class AllCountries extends StatefulWidget {
 class _AllCountriesState extends State<AllCountries> {
 
   List countries = [];
+  List filteredContinent = [];
+  bool isSearching = false ;
+
 
   getCountries() async{
     var response = await Dio().get('https://restcountries.eu/rest/v2/all');
@@ -22,20 +28,48 @@ class _AllCountriesState extends State<AllCountries> {
   void initState() {
     getCountries().then((data){
       setState(() {
-        countries = data;
+        countries = filteredContinent = data;
       });
     });
     super.initState();
   }
 
+  void _filterContinent(value){
+    setState(() {
+      filteredContinent =
+          countries.where((country) => country['region'].toLowerCase() ==  value ).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+
     //print(countries);
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.cyan,
-          title: Text('Learn Countries | All countries',
+          backgroundColor: Colors.blueGrey,
+          title: !isSearching ? Text('All countries')
+          : TextField(
+            onChanged: (value){
+              _filterContinent(value);
+            },
+             style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(hintText: "Europe",
+              hintStyle: TextStyle(color: Colors.white))
           ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: (){
+                setState(() {
+                  this.isSearching = !this.isSearching;
+                  filteredContinent = countries;
+                });
+
+              },
+            )
+          ],
+
         ),
         body: Container(
           padding: EdgeInsets.all(10),
@@ -45,14 +79,14 @@ class _AllCountriesState extends State<AllCountries> {
                 fit: BoxFit.cover,
               )
           ),
-          child: countries.length > 0 ? ListView.builder(
-              itemCount: countries.length,
+          child: filteredContinent.length > 0 ? ListView.builder(
+              itemCount: filteredContinent.length,
               itemBuilder: (BuildContext context,int index){
             return GestureDetector(
               onTap: ()
               {
                 Navigator.of(context).push(
-                    SizeRoute(page : Country(countries[index]),
+                    SizeRoute(page : Country(filteredContinent[index]),
                     ));
               },
 
@@ -70,7 +104,7 @@ class _AllCountriesState extends State<AllCountries> {
                         child: CircleAvatar(
                           radius: 10.0,
                           child: SvgPicture.network(
-                            countries[index]['flag'],
+                            filteredContinent[index]['flag'],
                             height: 30.0,
                             width: 40.0,
                           ),
@@ -78,7 +112,7 @@ class _AllCountriesState extends State<AllCountries> {
                         ),
                       ),
                       Text(
-                        countries[index]['name'],
+                        filteredContinent[index]['name'],
                         style: TextStyle(fontSize: 18),
                       ),
 
@@ -89,7 +123,7 @@ class _AllCountriesState extends State<AllCountries> {
               ),
             );}
 
-          ):CircularProgressIndicator(),
+          ):Center(child: CircularProgressIndicator()),
         )
     );
   }
