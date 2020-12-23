@@ -8,15 +8,24 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class AllCountries extends StatefulWidget {
 
+  var continent;
+
+  AllCountries({Key key,@required this.continent}) : super(key : key);
+
   @override
-  _AllCountriesState createState() => _AllCountriesState();
+  _AllCountriesState createState() => _AllCountriesState(continent);
 }
 
 class _AllCountriesState extends State<AllCountries> {
 
+
   List countries = [];
   List filteredContinent = [];
   bool isSearching = false ;
+
+  var continent;
+
+  _AllCountriesState(this.continent);
 
 
   getCountries() async{
@@ -35,6 +44,8 @@ class _AllCountriesState extends State<AllCountries> {
   }
 
   void _filterContinent(value){
+    print(this.continent);
+    filteredContinent = this.continent;
     setState(() {
       filteredContinent =
           countries.where((country) => country['region'].toLowerCase() ==  value ).toList();
@@ -48,7 +59,7 @@ class _AllCountriesState extends State<AllCountries> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blueGrey,
-          title: !isSearching ? Text('All countries')
+          title: !isSearching ? Text('Learn countries')
           : TextField(
             onChanged: (value){
               _filterContinent(value);

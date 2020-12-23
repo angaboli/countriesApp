@@ -24,7 +24,7 @@ class _HomeState extends State<Home>{
 
   final List<Widget> _children = [
     Continent(),
-    AllCountries(),
+    AllCountries(continent: null,),
   ];
 
   void onTabTapped(int index) {

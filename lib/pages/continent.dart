@@ -56,7 +56,19 @@ class _ContinentState extends State<Continent>{
             fit: BoxFit.cover,
           ),
         ),
-        child: GridView(
+        child: Column(
+          children: [
+            RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => AllCountries(continent: "Africa"),
+                ));
+              },
+              child: const Text('Africa', style: TextStyle(fontSize: 20)),
+            ),
+          ],
+        )
+        /*GridView(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                 children: <Widget>[
                   ContinentCard(title: 'Africa', image: 'africa.png'),
@@ -66,7 +78,7 @@ class _ContinentState extends State<Continent>{
                   ContinentCard(title: 'Oceania', image: 'oceania.png'),
                   ContinentCard(title: 'South America', image: 'southAmerica.png'),
                 ],
-              )
+              )*/
       ),
     );
  }
