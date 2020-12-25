@@ -8,12 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class AllCountries extends StatefulWidget {
 
-  var continent;
-
-  AllCountries({Key key,@required this.continent}) : super(key : key);
-
   @override
-  _AllCountriesState createState() => _AllCountriesState(continent);
+  _AllCountriesState createState() => _AllCountriesState();
 }
 
 class _AllCountriesState extends State<AllCountries> {
@@ -23,9 +19,6 @@ class _AllCountriesState extends State<AllCountries> {
   List filteredContinent = [];
   bool isSearching = false ;
 
-  var continent;
-
-  _AllCountriesState(this.continent);
 
 
   getCountries() async{
@@ -44,18 +37,17 @@ class _AllCountriesState extends State<AllCountries> {
   }
 
   void _filterContinent(value){
-    print(this.continent);
-    filteredContinent = this.continent;
+
     setState(() {
       filteredContinent =
-          countries.where((country) => country['region'].toLowerCase() ==  value ).toList();
+          countries.where((country) => country['region'].toLowerCase() || country['name'].toLowerCase() ==  value ).toList();
     });
+
   }
 
   @override
   Widget build(BuildContext context) {
-
-    //print(countries);
+    //_filterContinent(continent);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blueGrey,
@@ -65,8 +57,8 @@ class _AllCountriesState extends State<AllCountries> {
               _filterContinent(value);
             },
              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(hintText: "Europe",
-              hintStyle: TextStyle(color: Colors.white))
+              decoration: InputDecoration(hintText: "Search here by counrty or by continent",
+              hintStyle: TextStyle(color: Colors.white.withOpacity(.8)))
           ),
           actions: [
             IconButton(
@@ -74,13 +66,10 @@ class _AllCountriesState extends State<AllCountries> {
               onPressed: (){
                 setState(() {
                   this.isSearching = !this.isSearching;
-                  filteredContinent = countries;
                 });
-
               },
             )
           ],
-
         ),
         body: Container(
           padding: EdgeInsets.all(10),

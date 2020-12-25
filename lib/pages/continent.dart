@@ -17,6 +17,7 @@ class Continent extends StatefulWidget{
 class _ContinentState extends State<Continent>{
 
   List countries = [];
+/*
   List filteredContinent = [];
 
   getCountries() async{
@@ -34,6 +35,7 @@ class _ContinentState extends State<Continent>{
     super.initState();
   }
 
+*/
 
 
   @override
@@ -56,15 +58,37 @@ class _ContinentState extends State<Continent>{
             fit: BoxFit.cover,
           ),
         ),
-        child: Column(
+        child: Container(
+          child: /*TextField(
+                onChanged: (value){
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => AllCountries(continent: "Africa"),
+                  ));
+                },
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(hintText: "Europe",
+                    hintStyle: TextStyle(color: Colors.white)
+                )
+          ),
+        )*/
+        Column(
           children: [
-            RaisedButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => AllCountries(continent: "Africa"),
-                ));
-              },
-              child: const Text('Africa', style: TextStyle(fontSize: 20)),
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('images/africa.png'),
+                  fit: BoxFit.fitWidth,
+                  alignment: Alignment.topCenter,
+                )
+              ),
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => AllCountries(),
+                  ));
+                },
+                child: const Text('Africa', style: TextStyle(fontSize: 20)),
+              ),
             ),
           ],
         )
@@ -80,7 +104,7 @@ class _ContinentState extends State<Continent>{
                 ],
               )*/
       ),
-    );
+    ));
  }
 }
 

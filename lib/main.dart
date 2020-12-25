@@ -23,8 +23,8 @@ class _HomeState extends State<Home>{
   int _currentIndex = 0;
 
   final List<Widget> _children = [
-    Continent(),
-    AllCountries(continent: null,),
+    RandomCountry(),
+    AllCountries(),
   ];
 
   void onTabTapped(int index) {
@@ -44,7 +44,7 @@ class _HomeState extends State<Home>{
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
-            label: 'Continent',
+            label: 'Random country',
             backgroundColor: Colors.amberAccent,
           ),
           BottomNavigationBarItem(

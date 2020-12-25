@@ -23,7 +23,9 @@ class ContinentCard extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/'+image), fit: BoxFit.fitWidth, alignment: Alignment.topCenter,
+            image: AssetImage('images/'+image),
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.topCenter,
           ),
         ),
       ),
