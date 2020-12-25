@@ -40,14 +40,14 @@ class _AllCountriesState extends State<AllCountries> {
 
     setState(() {
       filteredContinent =
-          countries.where((country) => country['region'].toLowerCase() || country['name'].toLowerCase() ==  value ).toList();
+          countries.where((country) => country['region'].toLowerCase()  ==  value ).toList();
     });
 
   }
 
   @override
   Widget build(BuildContext context) {
-    //_filterContinent(continent);
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blueGrey,
@@ -57,7 +57,7 @@ class _AllCountriesState extends State<AllCountries> {
               _filterContinent(value);
             },
              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(hintText: "Search here by counrty or by continent",
+              decoration: InputDecoration(hintText: "Search here by country or by continent",
               hintStyle: TextStyle(color: Colors.white.withOpacity(.8)))
           ),
           actions: [
@@ -66,6 +66,7 @@ class _AllCountriesState extends State<AllCountries> {
               onPressed: (){
                 setState(() {
                   this.isSearching = !this.isSearching;
+                  filteredContinent = countries;
                 });
               },
             )
@@ -79,7 +80,7 @@ class _AllCountriesState extends State<AllCountries> {
                 fit: BoxFit.cover,
               )
           ),
-          child: filteredContinent.length > 0 ? ListView.builder(
+          child:  filteredContinent.length > 0 ? ListView.builder(
               itemCount: filteredContinent.length,
               itemBuilder: (BuildContext context,int index){
             return GestureDetector(
@@ -89,12 +90,8 @@ class _AllCountriesState extends State<AllCountries> {
                     SizeRoute(page : Country(filteredContinent[index]),
                     ));
               },
-
               child: Card(
                 elevation: 10,
-                /*leading: CircleAvatar(
-                        child: SvgPicture.network(country['flag']),
-                      ),*/
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                   child: Row(
@@ -123,8 +120,14 @@ class _AllCountriesState extends State<AllCountries> {
               ),
             );}
 
-          ):Center(child: CircularProgressIndicator()),
-        )
+          ):Center(child: CircularProgressIndicator())
+        ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blueGrey,
+        onPressed: () {  },
+        child: Text([countries.length].toString()),
+      ),
+
     );
   }
 }

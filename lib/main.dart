@@ -43,7 +43,7 @@ class _HomeState extends State<Home>{
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.map),
+            icon: Icon(Icons.location_on),
             label: 'Random country',
             backgroundColor: Colors.amberAccent,
           ),

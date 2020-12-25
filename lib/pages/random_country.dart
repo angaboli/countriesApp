@@ -19,9 +19,8 @@ class RandomCountry extends StatefulWidget{
 class _RandomCountryState extends State<RandomCountry>{
 
   List countries = [];
-  List filteredContinent = [];
   final _random = new Random();
-  var randomCountry = 2;
+  var randomCountry = 0;
 
   getCountries() async{
     var response = await Dio().get('https://restcountries.eu/rest/v2/all');
@@ -32,30 +31,21 @@ class _RandomCountryState extends State<RandomCountry>{
   void initState() {
     getCountries().then((data){
       setState(() {
-        countries = filteredContinent = data;
+        countries = data;
       });
     });
     super.initState();
   }
 
-  List _filterContinent(value){
-    setState(() {
-      filteredContinent =
-          countries.where((country) => country['name'] ==  value ).toList();
-    });
-    return filteredContinent;
-  }
 
   void updateCountry(){
     randomCountry = _random.nextInt(countries.length);
+    //randomCountry = 13;
   }
-
-
 
   @override
   Widget build(BuildContext context) {
-    for(var country in countries) {}
-    randomCountry = _random.nextInt(countries.length);
+
     return
       //print(country['name']);
       //print();
@@ -76,82 +66,83 @@ class _RandomCountryState extends State<RandomCountry>{
               ),
 
 
-              child: SingleChildScrollView(
-                child: Container(
-                  margin: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      gradient: LinearGradient(
-                          begin: Alignment.bottomRight,
-                          colors: [
-                            Colors.blueGrey.withOpacity(.4),
-                            Colors.blueGrey.withOpacity(.2),
-                          ]
-                      )
-                  ),
-                  height: 500,
-                  child: Center(
-                    child: Column(
-                      children: [
-                        Padding(
+              child: Container(
+                margin: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                        begin: Alignment.bottomRight,
+                        colors: [
+                          Colors.blueGrey.withOpacity(.4),
+                          Colors.blueGrey.withOpacity(.2),
+                        ]
+                    )
+                ),
+                height: 500,
+                child: Center(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Padding(
                           padding: EdgeInsets.all(0.8),
                           child: SvgPicture.network(
                             countries[randomCountry]['flag'],
                             width: 300.0,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(25.0),
-                          child: Table(
-                              children: [
-                                TableRow(children: [
-                                  Text('Name', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
-                                  Text(countries[randomCountry]['name'], style: TextStyle(fontSize: 15, color: Colors.white)),
-                                ]),
-                                TableRow(children: [
-                                  Text('Capital', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
-                                  Text(countries[randomCountry]['capital'], style: TextStyle(fontSize: 15, color: Colors.white))
-                                ]),
-                                TableRow(children: [
-                                  Text('Continent', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
-                                  Text(countries[randomCountry]['region'], style: TextStyle(fontSize: 15, color: Colors.white))
-                                ]),
-                                TableRow(children: [
-                                  Text('Population', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
-                                  Text(countries[randomCountry]['population'].toString(), style: TextStyle(fontSize: 15, color: Colors.white))
-                                ]),
-                                TableRow(children: [
-                                  Text('Area', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
-                                  Text(countries[randomCountry]['area'].toString(), style: TextStyle(fontSize: 15, color: Colors.white))
-                                ]),
-                                TableRow(children: [
-                                  Text('TimeZone', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
-                                  Text(countries[randomCountry]['timezones'].toString(), style: TextStyle(fontSize: 15, color: Colors.white))
-                                ]),
-                                TableRow(children: [
-                                  Text('Currency', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
-                                  Text(countries[randomCountry]['currencies'][0]['name'], style: TextStyle(fontSize: 15, color: Colors.white))
-                                ]),
-                              ]
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(25.0),
+                        child: Table(
+                            children: [
+                              TableRow(children: [
+                                Text('Name', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
+                                Text(countries[randomCountry]['name'], style: TextStyle(fontSize: 15, color: Colors.white)),
+                              ]),
+                              TableRow(children: [
+                                Text('Capital', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
+                                Text(countries[randomCountry]['capital'], style: TextStyle(fontSize: 15, color: Colors.white))
+                              ]),
+                              TableRow(children: [
+                                Text('Continent', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
+                                Text(countries[randomCountry]['region'], style: TextStyle(fontSize: 15, color: Colors.white))
+                              ]),
+                              TableRow(children: [
+                                Text('Population', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
+                                Text(countries[randomCountry]['population'].toString(), style: TextStyle(fontSize: 15, color: Colors.white))
+                              ]),
+                              TableRow(children: [
+                                Text('Area', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
+                                Text(countries[randomCountry]['area'].toString(), style: TextStyle(fontSize: 15, color: Colors.white))
+                              ]),
+                              TableRow(children: [
+                                Text('TimeZone', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
+                                Text(countries[randomCountry]['timezones'].toString(), style: TextStyle(fontSize: 15, color: Colors.white))
+                              ]),
+                              TableRow(children: [
+                                Text('Currency', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
+                                Text(countries[randomCountry]['currencies'][0]['name'], style: TextStyle(fontSize: 15, color: Colors.white))
+                              ]),
+                            ]
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(.8),
+                        child: Center(
+                          child: IconButton(
+                            color: Colors.white,
+                            iconSize: 30.0,
+                            icon: Icon(Icons.refresh),
+                            onPressed: (){
+                              setState(() {
+                                updateCountry();
+                              });
+                            },
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(.8),
-                          child: Center(
-                            child: IconButton(
-                              color: Colors.white,
-                              iconSize: 30.0,
-                              icon: Icon(Icons.refresh),
-                              onPressed: (){
-                                setState(() {
-                                  updateCountry();
-                                });
-                              },
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ),
               )
