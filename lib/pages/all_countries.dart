@@ -122,11 +122,11 @@ class _AllCountriesState extends State<AllCountries> {
 
           ):Center(child: CircularProgressIndicator())
         ),
-      floatingActionButton: FloatingActionButton(
+    /*  floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blueGrey,
         onPressed: () {  },
         child: Text([countries.length].toString()),
-      ),
+      ),*/
 
     );
   }

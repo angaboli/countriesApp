@@ -128,17 +128,30 @@ class _RandomCountryState extends State<RandomCountry>{
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(.8),
+                        padding: EdgeInsets.all(.2),
                         child: Center(
-                          child: IconButton(
-                            color: Colors.white,
-                            iconSize: 30.0,
-                            icon: Icon(Icons.refresh),
-                            onPressed: (){
-                              setState(() {
-                                updateCountry();
-                              });
-                            },
+                          child: Container(
+                            margin: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                gradient: LinearGradient(
+                                    begin: Alignment.bottomRight,
+                                    colors: [
+                                      Colors.blueGrey.withOpacity(.5),
+                                      Colors.blue.withOpacity(.5),
+                                    ]
+                                )
+                            ),
+                            child: IconButton(
+                              color: Colors.white,
+                              iconSize: 25.0,
+                              icon: Icon(Icons.refresh),
+                              onPressed: (){
+                                setState(() {
+                                  updateCountry();
+                                });
+                              },
+                            ),
                           ),
                         ),
                       )
